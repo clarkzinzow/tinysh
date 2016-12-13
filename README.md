@@ -127,9 +127,9 @@ errant commands.
 
 ### Immediate TODO:
 
+* Add more detail to the verbose mode.
 * Create static context struct for a better, more stateful verbose mode (tried to avoid this, but with
   the addition of any new features, it will probably be needed.)
-* Add more detail to the verbose mode.
 * Add start adding new shell features.
 
 ### Future Work
