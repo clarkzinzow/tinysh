@@ -198,6 +198,8 @@ void driver() {
     perror("Error allocating memory.");
     exit(EXIT_FAILURE);
   }
+  if(verbose_flag)
+    printf("Dynamically allocating memory for a struct containing a list of commands and the number of commands.\n");
 
   exit_flag = 0;
   while(!exit_flag) {
@@ -846,5 +848,5 @@ void display_help(char *progname) {
  * Displays usage information.
  * */
 void usage(char *progname) {
-  fprintf(stderr, "usage: %s [-p|--path path] [-h|--help]\n", progname);
+  fprintf(stderr, "usage: %s [-p|--path file] [-h|--help] [-v|--verbose]\n", progname);
 }
