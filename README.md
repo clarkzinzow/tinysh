@@ -17,32 +17,32 @@ in the midst of taking your first operating systems class, or if you have just s
 to use a UNIX shell and you're curious about what's under the hood, hopefully messing around with
 tinysh will help solidify some foundational concepts.
 
-### Usage:
+### Getting Started:
 
-There are two ways to start using the shell:
+There are two easy ways to start using the shell.
 
-##### Download and Run the Executable:
+##### You can download and run the executable:
 
 1. Download tinysh executable from bin directory.
 2. Three quick ways to run the shell:
    1. Run
-      ```
-      $ /path/to/file/tinysh
-      ```
+    ```
+    $ /path/to/file/tinysh
+    ```
    2. or, add `/path/to/file/` to your path and run
-      ```
-      $ tinysh
-      ```
+    ```
+    $ tinysh
+    ```
    3. or, navigate to the download directory where tinysh is located
-      ```
-      $ cd /path/to/file
-      ```
+    ```
+    $ cd /path/to/file
+    ```
       and run
-      ```
-      $ ./tinysh
-      ```
-      
-##### Build It Yourself
+    ```
+    $ ./tinysh
+    ```
+
+##### You can compile it yourself:
 
 1. Clone or download this repository.
 2. Navigate to the repository directory.
@@ -62,7 +62,9 @@ $ make
 $ ./bin/tinysh
 ```
 
-The shell has the following usage:
+#### Using Tinysh:
+
+The shell has the following options:
 ```
 tinysh [-p|--path file] [-h|--help] [-v|--verbose]
 ```
@@ -87,11 +89,23 @@ tinysh [-p|--path file] [-h|--help] [-v|--verbose]
 * It is also able to run any program in the path defined by your environment, or the path specified
 by an optional path file that you can provide.
 * Implements three "special" features:
-  * **Overwrite redirection:** `program args > outfile` saves the output from the execution of
+  * **Overwrite redirection:** 
+    ```
+    tinysh>  program args > outfile
+    ```
+    Saves the output from the execution of
   `program` with arguments `args` to `outfile`, overwriting `outfile` if it already exists. 
-  * **Append redirection:** `program args >> outfile` appends the output from the execution of
+  * **Append redirection:**
+    ```
+    tinysh>  program args >> outfile
+    ```
+    Appends the output from the execution of
   `program` with arguments `args` onto the end of `outfile`, not overwriting any of `outfile`. 
-  * **Pipes:** `program1 args1 | program2 args2` uses the output from the execution of `program1`,
+  * **Pipes:**
+    ```
+    tinysh>  program1 args1 | program2 args2
+    ```
+    Uses the output from the execution of `program1`,
   with arguments `args1`, as input to `program 2`, with arguments `args2`.
 * Tinysh makes virtually no assumptions about the number of commands, number of paths in your path,
 length of pipe chains, etc.
