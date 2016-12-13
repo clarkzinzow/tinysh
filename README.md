@@ -17,11 +17,11 @@ in the midst of taking your first operating systems class, or if you have just s
 to use a UNIX shell and you're curious about what's under the hood, hopefully messing around with
 tinysh will help solidify some foundational concepts.
 
-### Getting Started:
+### Getting Started
 
 There are two easy ways to start using the shell.
 
-##### You can download and run the executable:
+#### You can download and run the executable:
 
 1. Download tinysh executable from bin directory.
 2. Three quick ways to run the shell:
@@ -42,7 +42,7 @@ There are two easy ways to start using the shell.
     $ ./tinysh
     ```
 
-##### You can compile it yourself:
+#### You can compile it yourself:
 
 1. Clone or download this repository.
 2. Navigate to the repository directory.
@@ -83,7 +83,7 @@ tinysh [-p|--path file] [-h|--help] [-v|--verbose]
     calls.
 
 
-### Features:
+### Features
 
 * Tinysh can run any typical shell command.
 * It is also able to run any program in the path defined by your environment, or the path specified
@@ -114,7 +114,7 @@ information (forks, opening and closing of pipes, opening and closing of file de
 memory allocations and deallocations thereof, other system calls, etc.) as the shell carries out the
 given command.
 
-### Implementation Details:
+### Implementation Details
 
 * Tinysh creates a child process for each new command, protecting the main shell process from any
 errant commands.
@@ -125,7 +125,14 @@ errant commands.
   * Populates a provided `char**` with a dynamically allocated, null-terminated list of commands and
     corresponding arguments.
 
-### Future Work:
+### Immediate TODO:
+
+* Create static context struct for a better, more stateful verbose mode (tried to avoid this, but with
+  the addition of any new features, it will probably be needed.)
+* Add more detail to the verbose mode.
+* Add start adding new shell features.
+
+### Future Work
 
 Ultimately, creating a full-fledged shell in such a verbose manner would be nonsensical; very few
 people would want that much uninteresting information cluttering up their terminal (image writing a
