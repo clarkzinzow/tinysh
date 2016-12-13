@@ -1,9 +1,11 @@
 # tinysh
+
 A tiny, simple, well-commented UNIX shell, with a (very) verbose mode.  The verbose mode is designed
 to give the user a decent idea of the shell program flow, as well as the lower-level mechanisms being
 employed in the shell's effort to carry out the user's various commands.
 
 ### Purpose:
+
 You might be asking yourself a very valid question:
 
 ![y tho](http://i.imgur.com/yNlQWRM.jpg?fb)
@@ -16,8 +18,11 @@ to use a UNIX shell and you're curious about what's under the hood, hopefully me
 tinysh will help solidify some foundational concepts.
 
 ### Usage:
+
 There are two ways to start using the shell:
+
 ##### Download and Run the Executable:
+
 1. Download tinysh executable from bin directory.
 2. Three quick ways to run the shell:
    1. Run
@@ -36,7 +41,9 @@ There are two ways to start using the shell:
       ```
       $ ./tinysh
       ```
+      
 ##### Build It Yourself
+
 1. Clone or download this repository.
 2. Navigate to the repository directory.
 ```
@@ -75,6 +82,7 @@ tinysh [-p|--path file] [-h|--help] [-v|--verbose]
 
 
 ### Features:
+
 * Tinysh can run any typical shell command.
 * It is also able to run any program in the path defined by your environment, or the path specified
 by an optional path file that you can provide.
