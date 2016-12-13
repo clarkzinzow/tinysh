@@ -199,7 +199,7 @@ void driver() {
     exit(EXIT_FAILURE);
   }
   if(verbose_flag)
-    printf("Dynamically allocating memory for a struct containing a list of commands and the number of commands.\n");
+    printf("Dynamically allocating memory the list of commands and arguments provided.\n");
 
   exit_flag = 0;
   while(!exit_flag) {
