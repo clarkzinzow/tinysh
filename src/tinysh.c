@@ -26,11 +26,13 @@
 #include <errno.h>
 #include <limits.h>
 
+#define PROGNAME "tinysh"
+
 #define DEFAULT_PATH_CAPACITY   5
 #define DEFAULT_TOKENS_CAPACITY 3
 #define TOKEN_FACTOR_HEURISTIC  4
 
-#define READ_END 0
+#define READ_END  0
 #define WRITE_END 1
 
 static char **path;
@@ -94,7 +96,7 @@ int main(int argc, char *argv[]) {
 
       // Help short option.
       case 'h':
-        display_help(argv[0]);
+        prog_help();
         exit(EXIT_SUCCESS);
         break;
 
@@ -321,9 +323,26 @@ int driver() {
     else if(strcmp(cmds[0], "verbose") == 0) {
       verbose_flag = 1;
       command_status = 0;
+      if(verbose_flag)
+        printf("Verbose mode is turned on.\n\n");
     }
     else if(strcmp(cmds[0], "brief") == 0) {
+      if(verbose_flag)
+        printf("Turning off verbose mode.\n\n");
       verbose_flag = 0;
+      command_status = 0;
+    }
+    else if(strcmp(cmds[0], "help") == 0) {
+      if(cmds[1] != NULL) {
+        help_handle(cmds[1]);
+        if(verbose_flag)
+          printf("Printing help information for %s...\n\n", cmds[1]);
+      }
+      else {
+        if(verbose_flag)
+          printf("Printing help information...\n\n");
+        shell_help();
+      }
       command_status = 0;
     }
     else if(strcmp(cmds[0], "pwd") == 0) {
@@ -1114,17 +1133,76 @@ int pwd_handle(char **cmd, size_t num_cmd) {
   return 0;
 }
 
+void help_handle(char *cmd) {
+  if(strcmp(cmd, "brief") == 0) {
+    printf("brief: brief\n"
+           "    Disables verbose mode.\n");
+  }
+  if(strcmp(cmd, "cd") == 0) {
+    printf("cd: cd [DIR]\n"
+           "    Change the shell working directory.\n\n"
+           "    Change the current directory to DIR.  The default DIR is the value of the\n"
+           "    HOME shell variable.\n\n"
+           "    Exit Status:\n"
+           "    Returns 0 if the directory is changed; non-zero otherwise.\n");
+  }
+  else if(strcmp(cmd, "help") == 0) {
+    printf("help: help [pattern ...]\n"
+           "    Displays information about builtin commands.");
+  }
+  else if(strcmp(cmd, "pwd") == 0) {
+    printf("pwd: pwd\n"
+           "    Print the name of the current working directory.\n\n"
+           "    Exit Status:\n"
+           "    Returns 0 unless the current directory cannot be read, at which point it\n"
+           "    returns -1.\n"); 
+  }
+  else if(strcmp(cmd, "verbose") == 0) {
+    printf("verbose: verbose\n"
+           "    Enables verbose mode.\n");
+  }
+  else {
+    printf("help: No help topics match %s.  Try 'help help' to see more about the help command,\n"
+           "      or try 'help' to see the commands that are defined internally.\n", cmd);
+  }
+}
+
 /* *
  * Displays help information.
  * */
-void display_help(char *progname) {
+void prog_help() {
   // TODO:  Create more comprehensive help information.
-  usage(progname);
+  usage();
+  printf("\n");
+  print_desc();
+  printf("Options:\n"
+         "    -p, --path=PATH:  use PATH as path for commands and program\n"
+         "    -h, --help:       display this help message\n"
+         "    -v, --verbose:    enables verbose mode\n");
+}
+
+void shell_help() {
+  printf("tinysh\n\n");
+  print_desc();
+  printf("The commands listed below are defined internally, type 'help' to see this list.\n"
+         "Type 'help name' to find out more about the command 'name'.\n"
+         "  brief\n"
+         "  cd\n"
+         "  help\n"
+         "  pwd\n"
+         "  verbose\n");
+}
+
+void print_desc() {
+  printf("A tiny, simple UNIX shell, with a (very) verbose mode.\n"
+  "The verbose mode is designed to give the user a decent idea of the shell program flow,\n"
+  "as well as the lower-level mechanisms being employed in the shell's effort to carry out\n"
+  "the user's commands.\n\n");
 }
 
 /* *
  * Displays usage information.
  * */
-void usage(char *progname) {
-  fprintf(stderr, "usage: %s [-p|--path file] [-h|--help] [-v|--verbose]\n", progname);
+void usage() {
+  fprintf(stderr, "usage: %s [-p|--path file] [-h|--help] [-v|--verbose]\n", PROGNAME);
 }

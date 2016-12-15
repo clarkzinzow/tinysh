@@ -1,8 +1,8 @@
 # tinysh
 
-A tiny, simple, well-commented UNIX shell, with a (very) verbose mode.  The verbose mode is designed
+A tiny, simple UNIX shell, with a (very) verbose mode.  The verbose mode is designed
 to give the user a decent idea of the shell program flow, as well as the lower-level mechanisms being
-employed in the shell's effort to carry out the user's various commands.
+employed in the shell's effort to carry out the user's commands.
 
 ### Purpose:
 
@@ -23,8 +23,8 @@ There are two easy ways to start using the shell.
 
 #### You can download and run the executable:
 
-1. Download tinysh executable from bin directory.
-2. Three quick ways to run the shell:
+1. Download the tinysh executable from bin directory.
+2. There are three quick ways to run the shell:
    1. Run
     ```
     $ /path/to/file/tinysh
@@ -82,6 +82,19 @@ tinysh [-p|--path file] [-h|--help] [-v|--verbose]
     of file descriptors, dynamic memory allocations and deallocations thereof, and most system
     calls.
 
+Once you have started the shell, the following builtin commands are available (along with the
+typical terminal commands):
+
+* `verbose`
+  * Enables verbose mode.
+* `brief`
+  * Disables verbose mode.
+* `cd`
+  * Changes the current working directory.
+* `help`
+  * Displays shell options.
+* `pwd`
+  * Prints the current working directory.
 
 ### Features
 

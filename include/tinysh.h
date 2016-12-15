@@ -23,7 +23,10 @@ int pipe_handle(char **head, char **tail);
 int overwrite_handle(char **head, char **tail);
 int append_handle(char **head, char **tail);
 int redirection_write_handle(char **head, char **tail, int type);
-void display_help(char *progname);
-void usage(char *progname);
+void help_handle(char *cmd);
+void prog_help();
+void shell_help();
+void print_desc();
+void usage();
 
 #endif /* !TINYSH_H */
