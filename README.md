@@ -1,8 +1,8 @@
 # tinysh
 
 A tiny, simple UNIX shell, with a (very) verbose mode.  The verbose mode is designed
-to give the user a decent idea of the shell program flow, as well as the lower-level mechanisms being
-employed in the shell's effort to carry out the user's commands.
+to give the user a walkthrough of the shell program flow and reveal the low-level mechanisms
+used by the shell while carrying out the user's commands.
 
 ### Purpose:
 
@@ -10,8 +10,8 @@ You might be asking yourself a very valid question:
 
 ![y tho](http://i.imgur.com/yNlQWRM.jpg?fb)
 
-Tinysh is obviously not meant for any serious shell work.  However, running it in verbose mode,
-inspecting the code, and implementing your own features can serve as a useful
+Tinysh is obviously not meant for any serious shell work.  However, running the shell in verbose
+mode, inspecting the code, and implementing your own features can serve as a useful
 pedagogical tool for learning the basic underpinnings of a simplified shell architecture.  If you're
 in the midst of taking your first operating systems class, or if you have just started to learn how
 to use a UNIX shell and you're curious about what's under the hood, hopefully messing around with
@@ -101,7 +101,12 @@ typical terminal commands):
 * Tinysh can run any typical shell command.
 * It is also able to run any program in the path defined by your environment, or the path specified
 by an optional path file that you can provide.
-* Implements three "special" features:
+* Custom (but limited) implementation of the following commands:
+  * `cd dir`
+    * Changes the current working directory to `dir`.
+  * `pwd`
+    * Print the current working directory.
+* Implements three "special features":
   * **Overwrite redirection:** 
     ```
     tinysh>  program args > outfile
@@ -132,23 +137,24 @@ given command.
 * Tinysh creates a child process for each new command, protecting the main shell process from any
 errant commands.
 * It uses the execvp system call to execute programs.
-* As a fun bonus, I implemented a tokenizer with the following features:
+* As a fun bonus, I implemented a tokenizer (for parsing commands) with the following features:
   * Thread-safe (i.e., use of `strtok_r`.)
   * Does not modify the input string.
-  * Populates a provided `char**` with a dynamically allocated, null-terminated list of commands and
-    corresponding arguments.
+  * Returns a dynamically allocated, null-terminated list of tokens and populates a provided
+    pointer to an integer with the number of tokens found.
 
 ### Immediate TODO:
 
 * Add more detail to the verbose mode.
-* Create static context struct for a better, more stateful verbose mode (tried to avoid this, but with
-  the addition of any new features, it will probably be needed.)
-* Add start adding new shell features.
+* Create static context struct for a better, more stateful verbose mode (tried to avoid this, but
+with the addition of any new features, it will probably be needed.)
+* Add input redirection.
+* Add here documents.
 
 ### Future Work
 
 Ultimately, creating a full-fledged shell in such a verbose manner would be nonsensical; very few
-people would want that much uninteresting information cluttering up their terminal (image writing a
+people would want that much uninteresting information cluttering up their terminal (imagine writing a
 decently sized shell script where every fork, dynamic memory allocation and deallocation, and
 opening/closing of file descriptors was explicitly remarked on!)  Moreover, as you add features, the
 shell becomes more convoluted and loses some of it's instructional value.  However, there are
@@ -164,4 +170,3 @@ So far, I think the following would be worthwhile:
 * filename wildcarding
 * condition testing
 * lists
-* redirection

@@ -386,8 +386,8 @@ int driver() {
  * Tokenizer with the following features:
  *   - Thread-safe
  *   - Does not modify the input string
- *   - Populates cmd_list with a dynamically allocated, null-terminated list of strings
- *     and the number of said strings.
+ *   - Returns a dynamically allocated, null-terminated list of tokens and populates tok_num
+ *     with the number of tokens.
  * */
 char** tokenizer(const char *input, const char *delim, size_t *tok_num) {
   char **tokens;       // Tokens to be returned.
